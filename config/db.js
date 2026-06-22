@@ -1,5 +1,9 @@
 const mysql = require("mysql2");
 
+console.log("HOST:", process.env.DB_HOST);
+console.log("USER:", process.env.DB_USER);
+console.log("DB:", process.env.DB_NAME);
+
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -9,9 +13,9 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.log("Database Error:", err);
+    console.log("FULL DB ERROR:", err);
   } else {
-    console.log("MySQL Connected Successfully");
+    console.log("✅ MYSQL CONNECTED");
   }
 });
 
