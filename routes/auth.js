@@ -163,41 +163,40 @@ router.post("/register", async (req, res) => {
     );
   }
 );
-      db.query(
-  `INSERT INTO users
-  (
-    full_name,
-    email,
-    phone,
-    password,
-    enrollment_id
-  )
-  VALUES (?, ?, ?, ?, ?)`,
-  [
-    fullName,
-    email,
-    phone,
-    hashedPassword,
-    enrollmentId,
-  ],
-  (err, result) => {
-    if (err) {
-      console.log("USER INSERT ERROR:", err);
-      return res.status(500).json({
-        success: false,
-        message: "Registration Failed",
-      });
-    }
+        db.query(
+          `INSERT INTO users
+          (
+            full_name,
+            email,
+            phone,
+            password,
+            enrollment_id
+          )
+          VALUES (?, ?, ?, ?, ?)`,
+          [
+            fullName,
+            email,
+            phone,
+            hashedPassword,
+            enrollmentId,
+          ],
+          (err, result) => {
+            if (err) {
+              console.log(err);
 
-    console.log("USER INSERT SUCCESS:", result);
+              return res.status(500).json({
+                success: false,
+                message: "Registration Failed",
+              });
+            }
 
-    res.status(201).json({
-      success: true,
-      enrollmentId,
-      message: "Account Created Successfully",
-    });
-  }
-);
+            res.status(201).json({
+              success: true,
+              enrollmentId,
+              message: "Account Created Successfully",
+            });
+          }
+        );
       }
     );
   } catch (error) {
