@@ -7,13 +7,19 @@ const db = mysql.createConnection({
   user: "u203717998_Easyproject",
   password: "Easy@123456789",
   database: "u203717998_Easyproject",
+  connectTimeout: 10000,
 });
 
 db.connect((err) => {
   if (err) {
+    console.log("CODE:", err.code);
+    console.log("ERRNO:", err.errno);
+    console.log("SQLSTATE:", err.sqlState);
+    console.log("MESSAGE:", err.sqlMessage);
+    console.log("FATAL:", err.fatal);
     console.log(err);
   } else {
-    console.log("CONNECTED");
+    console.log("✅ MYSQL CONNECTED");
   }
 });
 
